@@ -1,0 +1,10 @@
+site_name: My Docs
+theme:
+  name: material
+
+# Page tree
+nav:
+  - Home: index.md
+  - Cluster Architecture, Installation & Configuration:
+    - 01.Actualización - Nodo Principal: Cluster Architecture, Installation & Configuration/01.Actualización - Nodo Principal .md
+    - 03.Backup ETCD: Cluster Architecture, Installation & Configuration/03.Backup ETCD.md
