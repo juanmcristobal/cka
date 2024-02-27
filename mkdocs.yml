@@ -12,13 +12,23 @@ nav:
     - Certificate Signing Requests (Normal User): cluster-architecture-installation-and-configuration/certificate-signing-requests-normal-user.md
   - Workloads & Scheduling:
     - Deployments: workloads-and-scheduling/deployments.md
+    - DaemonSets: workloads-and-scheduling/daemonsets.md
+  - Storage:
+    - Persistent Volumes: storage/persistent-volumes.md
+    - emptyDir: storage/emptydir.md
+  - Quick Reference: quick-reference-to-doc.md
+  - Quizs:
+    - Quiz 2: quiz/quiz2.md
+
 
 markdown_extensions:
   - attr_list
   - admonition
+  - pymdownx.mark
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 plugins:
   - search
+  - glightbox
