@@ -1,0 +1,931 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11">
+    
+    
+      
+        <title>Actualización de Kubernetes con kubeadm - CKA Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#actualizacion-de-kubernetes-con-kubeadm" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CKA Docs" class="md-header__button md-logo" aria-label="CKA Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CKA Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Actualización de Kubernetes con kubeadm
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CKA Docs" class="md-nav__button md-logo" aria-label="CKA Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    CKA Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cluster Architecture, Installation & Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cluster Architecture, Installation & Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backing-up-an-etcd-cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backing up an etcd cluster
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../certificate-signing-requests-normal-user/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Certificate Signing Requests (Normal User)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Workloads & Scheduling
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Workloads & Scheduling
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workloads-and-scheduling/deployments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workloads-and-scheduling/daemonsets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DaemonSets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Storage
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Storage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storage/persistent-volumes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Persistent Volumes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storage/emptydir/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    emptyDir
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference-to-doc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Quizs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Quizs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quiz/quiz2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quiz 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#verificar-la-version-actual-de-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificar la Versión Actual de Kubernetes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificar-versiones-disponibles-para-instalar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificar Versiones Disponibles para Instalar
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparacion-para-la-actualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparación para la Actualización
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plan-de-actualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plan de Actualización
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aplicar-la-actualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aplicar la Actualización
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificar-la-actualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificar la Actualización
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reanudar-programaciones-en-el-nodo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reanudar Programaciones en el Nodo
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="actualizacion-de-kubernetes-con-kubeadm">Actualización de Kubernetes con kubeadm</h1>
+<p>Este documento proporciona una guía paso a paso para actualizar un clúster de Kubernetes utilizando <code>kubeadm</code>.</p>
+<h2 id="verificar-la-version-actual-de-kubernetes">Verificar la Versión Actual de Kubernetes</h2>
+<p>Para verificar la versión actual de Kubernetes en los nodos del clúster, utiliza el siguiente comando:</p>
+<p>```shell
+kubectl get nodes
+```</p>
+<p>Ejemplo de salida:</p>
+<p>```plaintext
+NAME                          STATUS   ROLES           AGE    VERSION
+aux01-kubadm-vagrant          Ready    <none>          2d6h   v1.26.1
+aux02-kubadm-vagrant          Ready    <none>          2d6h   v1.26.1
+controlplane-kubadm-vagrant   Ready    control-plane   2d6h   v1.26.1
+```</p>
+<h2 id="verificar-versiones-disponibles-para-instalar">Verificar Versiones Disponibles para Instalar</h2>
+<p>Para listar todas las versiones disponibles de `kubeadm`, ejecuta:</p>
+<p>```shell
+apt list -a kubeadm
+```</p>
+<h2 id="preparacion-para-la-actualizacion">Preparación para la Actualización</h2>
+<ol>
+<li><strong>Desbloquear `kubeadm` para la Instalación:</strong></li>
+</ol>
+<p>```shell
+   sudo apt-mark unhold kubeadm
+   ```</p>
+<ol>
+<li><strong>Actualizar a la Versión Deseada (ejemplo: 1.26.9):</strong></li>
+</ol>
+<p>```shell
+   sudo apt-get update &amp;&amp; apt-get install -y kubeadm=1.26.9-00
+   ```</p>
+<ol>
+<li><strong>Bloquear `kubeadm` Después de la Instalación:</strong></li>
+</ol>
+<p>```shell
+   sudo apt-mark hold kubeadm
+   ```</p>
+<ol>
+<li><strong>Verificar la Versión Actualizada de `kubeadm`:</strong></li>
+</ol>
+<p>```shell
+   kubeadm version
+   ```</p>
+<h2 id="plan-de-actualizacion">Plan de Actualización</h2>
+<p>Para verificar el plan de actualización y las versiones objetivo, utiliza:</p>
+<p>```shell
+sudo kubeadm upgrade plan
+```</p>
+<p>Este comando te proporcionará detalles sobre las versiones actuales y las versiones objetivo de los componentes del clúster.</p>
+<h2 id="aplicar-la-actualizacion">Aplicar la Actualización</h2>
+<ol>
+<li><strong>Aplicar la Actualización con `kubeadm`:</strong></li>
+</ol>
+<p>```shell
+   sudo kubeadm upgrade apply v1.26.9
+   ```</p>
+<ol>
+<li><strong>Preparar el Nodo para Mantenimiento:</strong></li>
+</ol>
+<p>```shell
+   kubectl drain controlplane-kubadm-vagrant --ignore-daemonsets
+   ```</p>
+<ol>
+<li><strong>Actualizar `kubectl` y `kubelet`:</strong></li>
+</ol>
+<p>```shell
+   apt-mark unhold kubelet kubectl &amp;&amp; \
+   apt-get update &amp;&amp; apt-get install -y kubelet='1.26.9-00' kubectl='1.26.9-00' &amp;&amp; \
+   apt-mark hold kubelet kubectl
+   ```</p>
+<ol>
+<li><strong>Reiniciar `kubelet`:</strong></li>
+</ol>
+<p>```shell
+   sudo systemctl daemon-reload
+   sudo systemctl restart kubelet
+   ```</p>
+<h2 id="verificar-la-actualizacion">Verificar la Actualización</h2>
+<p>Verifica que los nodos estén actualizados y listos:</p>
+<p>```shell
+kubectl get nodes
+```</p>
+<h2 id="reanudar-programaciones-en-el-nodo">Reanudar Programaciones en el Nodo</h2>
+<p>Después de la actualización, puedes volver a marcar el nodo como programable:</p>
+<p>```shell
+kubectl uncordon controlplane-kubadm-vagrant
+```</p>
+<ul>
+<li>ver la versión de kubernetes</li>
+</ul>
+<pre><code class="language-shell">vagrant@controlplane-kubadm-vagrant:~$ kubectl get nodes
+NAME                          STATUS   ROLES           AGE    VERSION
+aux01-kubadm-vagrant          Ready    &lt;none&gt;          2d6h   v1.26.1
+aux02-kubadm-vagrant          Ready    &lt;none&gt;          2d6h   v1.26.1
+controlplane-kubadm-vagrant   Ready    control-plane   2d6h   v1.26.1
+</code></pre>
+<ul>
+<li>ver las versiones disponibles a instalar</li>
+</ul>
+<pre><code class="language-shell">apt list -a kubeadm
+</code></pre>
+<ul>
+<li>desbloqueamos kubeadm para instalar</li>
+</ul>
+<p>vagrant@controlplane-kubadm-vagrant:~$ sudo apt-mark unhold kubeadm
+Canceled hold on kubeadm.</p>
+<p>-Actualizo a la 1.26.9</p>
+<p>sudo apt-get update &amp;&amp; apt-get install -y kubeadm=1.26.9-00</p>
+<ul>
+<li>
+<p>bloqueo kubeadm
+vagrant@controlplane-kubadm-vagrant:~$ sudo apt-mark hold kubeadm
+kubeadm set on hold.</p>
+</li>
+<li>
+<p>reviso version</p>
+</li>
+</ul>
+<p>vagrant@controlplane-kubadm-vagrant:~$ kubeadm version
+kubeadm version: &amp;version.Info{Major:"1", Minor:"26", GitVersion:"v1.26.9", GitCommit:"d1483fdf7a0578c83523bc1e2212a606a44fd71d", GitTreeState:"clean", BuildDate:"2023-09-13T11:31:28Z", GoVersion:"go1.20.8", Compiler:"gc", Platform:"linux/amd64"}</p>
+<p>vagrant@controlplane-kubadm-vagrant:~$ sudo kubeadm upgrade plan
+[upgrade/config] Making sure the configuration is correct:
+[upgrade/config] Reading configuration from the cluster...
+[upgrade/config] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -o yaml'
+[preflight] Running pre-flight checks.
+[upgrade] Running cluster health checks
+[upgrade] Fetching available versions to upgrade to
+[upgrade/versions] Cluster version: v1.26.1
+[upgrade/versions] kubeadm version: v1.26.9
+I1129 19:33:10.958944   45976 version.go:256] remote version is much newer: v1.28.4; falling back to: stable-1.26
+[upgrade/versions] Target version: v1.26.11
+[upgrade/versions] Latest version in the v1.26 series: v1.26.11</p>
+<p>Components that must be upgraded manually after you have upgraded the control plane with 'kubeadm upgrade apply':
+COMPONENT   CURRENT       TARGET
+kubelet     3 x v1.26.1   v1.26.11</p>
+<p>Upgrade to the latest version in the v1.26 series:</p>
+<p>COMPONENT                 CURRENT   TARGET
+kube-apiserver            v1.26.1   v1.26.11
+kube-controller-manager   v1.26.1   v1.26.11
+kube-scheduler            v1.26.1   v1.26.11
+kube-proxy                v1.26.1   v1.26.11
+CoreDNS                   v1.9.3    v1.9.3
+etcd                      3.5.6-0   3.5.6-0</p>
+<p>You can now apply the upgrade by executing the following command:</p>
+<pre><code>    kubeadm upgrade apply v1.26.11
+</code></pre>
+<p>Note: Before you can perform this upgrade, you have to update kubeadm to v1.26.11.</p>
+<hr />
+<p>The table below shows the current state of component configs as understood by this version of kubeadm.
+Configs that have a "yes" mark in the "MANUAL UPGRADE REQUIRED" column require manual config upgrade or
+resetting to kubeadm defaults before a successful upgrade can be performed. The version to manually
+upgrade to is denoted in the "PREFERRED VERSION" column.</p>
+<p>API GROUP                 CURRENT VERSION   PREFERRED VERSION   MANUAL UPGRADE REQUIRED
+kubeproxy.config.k8s.io   v1alpha1          v1alpha1            no
+kubelet.config.k8s.io     v1beta1           v1beta1             no</p>
+<hr />
+<p>vagrant@controlplane-kubadm-vagrant:~$ sudo kubeadm upgrade apply v1.26.9
+[upgrade/config] Making sure the configuration is correct:
+[upgrade/config] Reading configuration from the cluster...
+[upgrade/config] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -o yaml'
+[preflight] Running pre-flight checks.
+[upgrade] Running cluster health checks
+[upgrade/version] You have chosen to change the cluster version to "v1.26.9"
+[upgrade/versions] Cluster version: v1.26.1
+[upgrade/versions] kubeadm version: v1.26.9
+[upgrade] Are you sure you want to proceed? [y/N]: </p>
+<p>[upgrade/successful] SUCCESS! Your cluster was upgraded to "v1.26.9". Enjoy!</p>
+<ul>
+<li>Prepare the node for maintenance by marking it unschedulable and evicting the workloads:</li>
+</ul>
+<pre><code class="language-shell">vagrant@controlplane-kubadm-vagrant:~$ kubectl drain controlplane-kubadm-vagrant --ignore-daemonsets
+node/controlplane-kubadm-vagrant cordoned
+Warning: ignoring DaemonSet-managed Pods: calico-system/calico-node-lcbjx, calico-system/csi-node-driver-zv96f, kube-system/kube-proxy-9d7k4
+evicting pod tigera-operator/tigera-operator-54b47459dd-gwzf8
+evicting pod calico-system/calico-kube-controllers-6b7b9c649d-wgwht
+evicting pod calico-apiserver/calico-apiserver-7768c549f9-ftzfh
+evicting pod calico-apiserver/calico-apiserver-7768c549f9-xh2fr
+evicting pod kube-system/coredns-787d4945fb-7zv2b
+evicting pod calico-system/calico-typha-84fb845b64-gpxj9
+evicting pod kube-system/coredns-787d4945fb-qxc5k
+pod/tigera-operator-54b47459dd-gwzf8 evicted
+pod/calico-apiserver-7768c549f9-ftzfh evicted
+pod/calico-kube-controllers-6b7b9c649d-wgwht evicted
+pod/calico-apiserver-7768c549f9-xh2fr evicted
+pod/coredns-787d4945fb-qxc5k evicted
+pod/coredns-787d4945fb-7zv2b evicted
+pod/calico-typha-84fb845b64-gpxj9 evicted
+node/controlplane-kubadm-vagrant drained
+
+vagrant@controlplane-kubadm-vagrant:~$ kubectl get nodes
+NAME                          STATUS                     ROLES           AGE    VERSION
+aux01-kubadm-vagrant          Ready                      &lt;none&gt;          5d4h   v1.26.1
+aux02-kubadm-vagrant          Ready                      &lt;none&gt;          5d4h   v1.26.1
+controlplane-kubadm-vagrant   Ready,SchedulingDisabled   control-plane   5d4h   v1.26.1
+</code></pre>
+<ul>
+<li>Upgrade kubectl</li>
+</ul>
+<pre><code class="language-shell">apt-mark unhold kubelet kubectl &amp;&amp; \
+apt-get update &amp;&amp; apt-get install -y kubelet='1.26.9-00' kubectl='1.26.9-00' &amp;&amp; \
+apt-mark hold kubelet kubectl
+</code></pre>
+<ul>
+<li>restart kubelet
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet</li>
+</ul>
+<p>now are updated</p>
+<pre><code class="language-shell">vagrant@controlplane-kubadm-vagrant:~$ kubectl get nodes
+NAME                          STATUS                     ROLES           AGE    VERSION
+aux01-kubadm-vagrant          Ready                      &lt;none&gt;          5d4h   v1.26.1
+aux02-kubadm-vagrant          Ready                      &lt;none&gt;          5d4h   v1.26.1
+controlplane-kubadm-vagrant   Ready,SchedulingDisabled   control-plane   5d4h   v1.26.9
+</code></pre>
+<ul>
+<li>Bring the node back online by marking it schedulable:</li>
+</ul>
+<pre><code class="language-shell">vagrant@controlplane-kubadm-vagrant:~$ kubectl get nodes
+NAME                          STATUS   ROLES           AGE    VERSION
+aux01-kubadm-vagrant          Ready    &lt;none&gt;          5d4h   v1.26.1
+aux02-kubadm-vagrant          Ready    &lt;none&gt;          5d4h   v1.26.1
+controlplane-kubadm-vagrant   Ready    control-plane   5d4h   v1.26.9
+</code></pre>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

@@ -1,0 +1,962 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11">
+    
+    
+      
+        <title>Comandos Imperativos (Imperative Commands) - CKA Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#comandos-imperativos-imperative-commands" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CKA Docs" class="md-header__button md-logo" aria-label="CKA Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CKA Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Comandos Imperativos (Imperative Commands)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CKA Docs" class="md-nav__button md-logo" aria-label="CKA Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    CKA Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cluster Architecture, Installation & Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cluster Architecture, Installation & Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster-architecture-installation-and-configuration/backing-up-an-etcd-cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backing up an etcd cluster
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster-architecture-installation-and-configuration/certificate-signing-requests-normal-user/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Certificate Signing Requests (Normal User)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Workloads & Scheduling
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Workloads & Scheduling
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workloads-and-scheduling/deployments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workloads-and-scheduling/daemonsets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DaemonSets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Storage
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Storage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storage/persistent-volumes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Persistent Volumes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storage/emptydir/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    emptyDir
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference-to-doc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Quizs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Quizs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quiz/quiz2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quiz 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="comandos-imperativos-imperative-commands">Comandos Imperativos (Imperative Commands)</h1>
+<p>Los comandos imperativos son una forma rápida y directa de realizar tareas en Kubernetes sin necesidad de definir archivos de configuración YAML.</p>
+<ol>
+<li>
+<p><strong>Crear un Pod de manera imperativa:</strong></p>
+<ul>
+<li>Comando: <code>kubectl run [nombre_del_pod] --image=[nombre_de_la_imagen]</code></li>
+<li>Propósito: Crea un nuevo pod de manera imperativa con el nombre y la imagen especificados.</li>
+</ul>
+</li>
+<li>
+<p><strong>Exponer un servicio de manera imperativa:</strong></p>
+<ul>
+<li>Comando: <code>kubectl expose pod [nombre_del_pod] --port=[puerto] --target-port=[puerto_destino] --name=[nombre_del_servicio]</code></li>
+<li>Propósito: Expone un servicio de manera imperativa para un pod específico con los puertos especificados.</li>
+</ul>
+</li>
+<li>
+<p><strong>Escalado de replicación de un Deployment de manera imperativa:</strong></p>
+<ul>
+<li>Comando: <code>kubectl scale deployment [nombre_del_despliegue] --replicas=[número_de_replicas]</code></li>
+<li>Propósito: Realiza el escalado de replicación de un deployment de manera imperativa ajustando el número de réplicas.</li>
+</ul>
+</li>
+<li>
+<p><strong>Creación de un espacio de nombres de manera imperativa:</strong></p>
+<ul>
+<li>Comando: <code>kubectl create namespace [nombre_del_namespace]</code></li>
+<li>Propósito: Crea un nuevo espacio de nombres de manera imperativa.</li>
+</ul>
+</li>
+<li>
+<p><strong>Establecer el espacio de nombres por defecto para el contexto actual de manera imperativa:</strong></p>
+<ul>
+<li>Comando: <code>kubectl config set-context --current --namespace=[nombre_del_namespace]</code></li>
+<li>Propósito: Establece de manera imperativa el espacio de nombres por defecto para el contexto actual.</li>
+</ul>
+</li>
+<li>
+<p><strong>Creación de un servicio de manera imperativa:</strong></p>
+<ul>
+<li>Comando: <code>kubectl create service clusterip [nombre_del_servicio] --tcp=[puerto]:[puerto_destino] --dry-run=client -o yaml &gt; service.yaml</code></li>
+<li>Propósito: Crea un servicio de manera imperativa y genera la definición YAML para el servicio.</li>
+</ul>
+</li>
+<li>
+<p><strong>Eliminación de un recurso de manera imperativa:</strong></p>
+<ul>
+<li>Comando: <code>kubectl delete [tipo_de_recurso] [nombre_del_recurso]</code></li>
+<li>Propósito: Elimina un recurso específico de manera imperativa.</li>
+</ul>
+</li>
+<li>
+<p><strong>Obtención de la configuración YAML de un recurso de manera imperativa:</strong></p>
+<ul>
+<li>Comando: <code>kubectl get [tipo_de_recurso] [nombre_del_recurso] -o yaml &gt; resource.yaml</code></li>
+<li>Propósito: Obtiene de manera imperativa la configuración YAML de un recurso específico.</li>
+</ul>
+</li>
+<li>
+<p><strong>Actualización de un recurso de manera imperativa:</strong></p>
+<ul>
+<li>Comando: <code>kubectl set [tipo_de_recurso] [nombre_del_recurso] --[atributo]=[nuevo_valor]</code></li>
+<li>Propósito: Actualiza de manera imperativa un atributo específico de un recurso.</li>
+</ul>
+</li>
+</ol>
+<h1 id="comandos-para-trabajar-con-nodos-nodes">Comandos para trabajar con Nodos (Nodes)</h1>
+<ol>
+<li>
+<p><strong>Obtener información sobre los nodos:</strong></p>
+<ul>
+<li>Comando: <code>kubectl get nodes</code></li>
+<li>Propósito: Muestra una lista de todos los nodos en el clúster.</li>
+</ul>
+</li>
+<li>
+<p><strong>Describir un nodo específico:</strong></p>
+<ul>
+<li>Comando: <code>kubectl describe node [nombre_del_nodo]</code></li>
+<li>Propósito: Proporciona información detallada sobre un nodo específico, incluyendo detalles sobre recursos, capacidad y estado.</li>
+</ul>
+</li>
+</ol>
+<h1 id="comandos-para-trabajar-con-espacios-de-nombres-namespaces">Comandos para trabajar con Espacios de Nombres (Namespaces)</h1>
+<ol>
+<li>
+<p><strong>Crear un nuevo espacio de nombres:</strong></p>
+<ul>
+<li>Comando: <code>kubectl create namespace [nombre_del_namespace]</code></li>
+<li>Propósito: Crea un nuevo espacio de nombres en el clúster.</li>
+</ul>
+</li>
+<li>
+<p><strong>Establecer el espacio de nombres por defecto para el contexto actual:</strong></p>
+<ul>
+<li>Comando: <code>kubectl config set-context --current --namespace=[nombre_del_namespace]</code></li>
+<li>Propósito: Establece el espacio de nombres por defecto para el contexto actual. Los comandos subsiguientes operarán en este espacio de nombres.</li>
+</ul>
+</li>
+<li>
+<p><strong>Obtener la configuración del espacio de nombres y guardarla en un archivo YAML:</strong></p>
+<ul>
+<li>Comando: <code>kubectl get namespace [nombre_del_namespace] -o yaml &gt; [nombre_del_archivo_yaml]</code></li>
+<li>Propósito: Obtiene la configuración del espacio de nombres especificado y guarda la información en un archivo YAML llamado team-12-namespace.yml.</li>
+</ul>
+</li>
+</ol>
+<h1 id="comandos-para-trabajar-con-pods">Comandos para trabajar con Pods</h1>
+<ol>
+<li>
+<p><strong>Obtener información sobre los pods:</strong></p>
+<ul>
+<li>Comando: <code>kubectl get pods</code></li>
+<li>Propósito: Muestra una lista de todos los pods en el clúster.</li>
+</ul>
+</li>
+<li>
+<p><strong>Crear un nuevo pod:</strong></p>
+<ul>
+<li>Comando: <code>kubectl run [nombre_del_pod] --image=[nombre_de_la_imagen]</code></li>
+<li>Propósito: Crea un nuevo pod con el nombre y la imagen especificados.</li>
+</ul>
+</li>
+<li>
+<p><strong>Obtener detalles de un pod:</strong></p>
+<ul>
+<li>Comando: <code>kubectl describe pod [nombre_del_pod]</code></li>
+<li>Propósito: Proporciona información detallada sobre un pod específico, incluida la imagen utilizada.</li>
+</ul>
+</li>
+<li>
+<p><strong>Obtener información detallada sobre los nodos en los que se ejecutan los pods:</strong></p>
+<ul>
+<li>Comando: <code>kubectl get pods -o wide</code></li>
+<li>Propósito: Muestra información adicional, incluido el nodo en el que se ejecuta cada pod.</li>
+</ul>
+</li>
+<li>
+<p><strong>Eliminar un pod:</strong></p>
+<ul>
+<li>Comando: <code>kubectl delete pod [nombre_del_pod]</code></li>
+<li>Propósito: Elimina un pod específico.</li>
+</ul>
+</li>
+<li>
+<p><strong>Editar un pod para cambiar la imagen:</strong></p>
+<ul>
+<li>Comando: <code>kubectl edit pod [nombre_del_pod]</code></li>
+<li>Propósito: Abre un editor para modificar la definición de un pod y realizar cambios, como cambiar la imagen utilizada.</li>
+</ul>
+</li>
+<li>
+<p><strong>Reemplazar un recurso existente con un nuevo recurso proporcionado.</strong></p>
+<ul>
+<li>Comando: <code>kubectl replace --force -f [nombre_del_archivo_yaml]</code></li>
+<li>Propósito: El comando kubectl replace se utiliza para actualizar un recurso existente en el clúster de Kubernetes con la definición de un nuevo recurso proporcionado en un archivo YAML. La opción --force indica que se debe realizar el reemplazo sin solicitar confirmación adicional.</li>
+</ul>
+</li>
+</ol>
+<h1 id="comandos-para-trabajar-con-replicasets">Comandos para trabajar con ReplicaSets</h1>
+<ol>
+<li>
+<p><strong>Obtener información sobre los ReplicaSets:</strong></p>
+<ul>
+<li>Comando: <code>kubectl get ReplicaSet</code></li>
+<li>Propósito: Muestra una lista de todos los ReplicaSets en el clúster.</li>
+</ul>
+</li>
+<li>
+<p><strong>Crear un ReplicaSet:</strong></p>
+<ul>
+<li>Comando: <code>kubectl create -f [nombre_del_archivo_yaml]</code></li>
+<li>Propósito: Crea un ReplicaSet utilizando un archivo de definición YAML.</li>
+</ul>
+</li>
+<li>
+<p><strong>Obtener detalles de un ReplicaSet:</strong></p>
+<ul>
+<li>Comando: <code>kubectl describe ReplicaSet [nombre_del_ReplicaSet]</code></li>
+<li>Propósito: Proporciona información detallada sobre un ReplicaSet específico, incluyendo la imagen utilizada para crear los pods.</li>
+</ul>
+</li>
+<li>
+<p><strong>Eliminar un pod:</strong></p>
+<ul>
+<li>Comando: <code>kubectl delete pod [nombre_del_pod]</code></li>
+<li>Propósito: Elimina un pod específico.</li>
+</ul>
+</li>
+<li>
+<p><strong>Escalar un ReplicaSet a cinco pods:</strong></p>
+<ul>
+<li>Comando: <code>kubectl scale --replicas=5 replicaset [nombre_del_ReplicaSet]</code></li>
+<li>Propósito: Escala un ReplicaSet para que tenga cinco pods en funcionamiento.</li>
+</ul>
+</li>
+<li>
+<p><strong>Escalar un ReplicaSet a dos pods:</strong></p>
+<ul>
+<li>Comando: <code>kubectl edit replicaset [nombre_del_ReplicaSet]</code></li>
+<li>Propósito: Edita un ReplicaSet y ajusta el número de réplicas a dos.</li>
+</ul>
+</li>
+</ol>
+<h1 id="comandos-para-trabajar-con-despliegues-deployments">Comandos para trabajar con Despliegues (Deployments)</h1>
+<ol>
+<li>
+<p><strong>Verificar los despliegues existentes:</strong></p>
+<ul>
+<li>Comando: <code>kubectl get deployments</code></li>
+<li>Propósito: Muestra una lista de todos los despliegues en el clúster.</li>
+</ul>
+</li>
+<li>
+<p><strong>Crear un nuevo despliegue:</strong></p>
+<ul>
+<li>Comando: <code>kubectl create deployment [nombre] --image=[nombre_de_la_imagen] --replicas=[número_de_replicas]</code></li>
+<li>Propósito: Crea un nuevo despliegue con el nombre, la imagen y el número de réplicas especificados.</li>
+</ul>
+</li>
+</ol>
+<h1 id="comandos-para-trabajar-con-services">Comandos para trabajar con Services</h1>
+<ol>
+<li>
+<p><strong>Obtener información sobre los servicios:</strong></p>
+<ul>
+<li>Comando: <code>kubectl get service</code> o <code>kubectl get svc</code></li>
+<li>Propósito: Muestra una lista de todos los servicios en el clúster.</li>
+</ul>
+</li>
+<li>
+<p><strong>Obtener el tipo del servicio predeterminado de Kubernetes:</strong></p>
+<ul>
+<li>Comando: <code>kubectl get service &lt;nombre_del_servicio&gt; -n &lt;nombre_del_namespace&gt;</code></li>
+<li>Propósito: Obtiene el tipo del servicio de Kubernetes en un namespace específico.</li>
+</ul>
+</li>
+<li>
+<p><strong>¿Cuál es el puerto de destino configurado en el servicio de Kubernetes?</strong></p>
+<ul>
+<li>Comando: <code>kubectl describe service &lt;nombre_del_servicio&gt; -n &lt;nombre_del_namespace&gt;</code></li>
+<li>Propósito: Muestra información detallada del servicio, incluyendo el puerto de destino.</li>
+</ul>
+</li>
+<li>
+<p><strong>¿Cuántas etiquetas están configuradas en el servicio de Kubernetes?</strong></p>
+<ul>
+<li>Comando: <code>kubectl describe service &lt;nombre_del_servicio&gt; -n &lt;nombre_del_namespace&gt;</code></li>
+<li>Propósito: Muestra el número de etiquetas configuradas en el servicio.</li>
+</ul>
+</li>
+<li>
+<p><strong>¿Cuántos puntos finales están conectados al servicio de Kubernetes?</strong></p>
+<ul>
+<li>Comando: <code>kubectl describe service &lt;nombre_del_servicio&gt; -n &lt;nombre_del_namespace&gt;</code></li>
+<li>Propósito: Muestra el número de puntos finales conectados al servicio.</li>
+</ul>
+</li>
+<li>
+<p><strong>¿Cuántos despliegues existen en el espacio de nombres predeterminado actual?</strong></p>
+<ul>
+<li>Comando: <code>kubectl get deployments -n &lt;nombre_del_namespace&gt;</code></li>
+<li>Propósito: Obtiene el número de despliegues en un namespace específico.</li>
+</ul>
+</li>
+<li>
+<p><strong>¿Cuál es la imagen utilizada para crear las cápsulas en el despliegue?</strong></p>
+<ul>
+<li>Comando: <code>kubectl describe deployment &lt;nombre_del_despliegue&gt; -n &lt;nombre_del_namespace&gt;</code></li>
+<li>Propósito: Muestra la imagen utilizada para crear las cápsulas en un despliegue específico.</li>
+</ul>
+</li>
+<li>
+<p><strong>¿Puedes acceder a la interfaz de la aplicación web?</strong></p>
+<ul>
+<li>Propósito: Verifica si puedes acceder a la interfaz de la aplicación web.</li>
+</ul>
+</li>
+<li>
+<p><strong>¿Qué se necesita hacer para acceder a la interfaz de la aplicación web?</strong></p>
+<ul>
+<li>Comando: <code>kubectl apply -f service-definition.yaml</code></li>
+<li>Propósito: Crea un nuevo servicio para acceder a la interfaz de la aplicación web.</li>
+</ul>
+</li>
+<li>
+<p><strong>¿Cuál es el nombre del nuevo servicio creado para acceder a la interfaz de la aplicación web?</strong></p>
+<ul>
+<li>Comando: <code>kubectl get service</code></li>
+<li>Propósito: Obtiene el nombre del nuevo servicio creado para acceder a la interfaz de la aplicación web.</li>
+</ul>
+</li>
+<li>
+<p><strong>¿Cuál es el tipo del nuevo servicio?</strong></p>
+<ul>
+<li>Comando: <code>kubectl describe service web-app-service -n &lt;nombre_del_namespace&gt;</code></li>
+<li>Propósito: Obtiene el tipo del nuevo servicio creado.</li>
+</ul>
+</li>
+<li>
+<p><strong>¿Cuál es el puerto de destino del nuevo servicio?</strong></p>
+<ul>
+<li>Comando: <code>kubectl describe service web-app-service -n &lt;nombre_del_namespace&gt;</code></li>
+<li>Propósito: Obtiene el puerto de destino del nuevo servicio.</li>
+</ul>
+</li>
+<li>
+<p><strong>¿Cuál es el puerto del nuevo servicio?</strong></p>
+<ul>
+<li>Comando: <code>kubectl describe service web-app-service -n &lt;nombre_del_namespace&gt;</code></li>
+<li>Propósito: Obtiene el puerto del nuevo servicio.</li>
+</ul>
+</li>
+<li>
+<p><strong>¿Cuál es el puerto de nodo del nuevo servicio?</strong></p>
+<ul>
+<li>Comando: <code>kubectl describe service web-app-service -n &lt;nombre_del_namespace&gt;</code></li>
+<li>Propósito: Obtiene el puerto de nodo del nuevo servicio.</li>
+</ul>
+</li>
+<li>
+<p><strong>¿Cuál es el nombre del selector del nuevo servicio?</strong></p>
+<ul>
+<li>Comando: <code>kubectl describe service web-app-service -n &lt;nombre_del_namespace&gt;</code></li>
+<li>Propósito: Obtiene el nombre del selector del nuevo servicio.</li>
+</ul>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

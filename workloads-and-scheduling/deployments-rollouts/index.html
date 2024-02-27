@@ -1,0 +1,1068 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11">
+    
+    
+      
+        <title>Deployment Rollouts - CKA Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deployment-rollouts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CKA Docs" class="md-header__button md-logo" aria-label="CKA Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CKA Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Deployment Rollouts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CKA Docs" class="md-nav__button md-logo" aria-label="CKA Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    CKA Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cluster Architecture, Installation & Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cluster Architecture, Installation & Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster-architecture-installation-and-configuration/backing-up-an-etcd-cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backing up an etcd cluster
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster-architecture-installation-and-configuration/certificate-signing-requests-normal-user/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Certificate Signing Requests (Normal User)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Workloads & Scheduling
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Workloads & Scheduling
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../daemonsets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DaemonSets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Storage
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Storage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storage/persistent-volumes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Persistent Volumes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storage/emptydir/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    emptyDir
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference-to-doc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Quizs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Quizs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quiz/quiz2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quiz 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-rollouts-and-revisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding Rollouts and Revisions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Understanding Rollouts and Revisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#triggering-a-rollout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Triggering a Rollout
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Triggering a Rollout">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-updating-a-deployments-container-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Updating a Deployment's Container Image
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-rollouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring Rollouts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring Rollouts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checking-rollout-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking Rollout Status
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Rollback
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Managing Rollback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rolling-back-to-the-last-successful-revision" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rolling Back to the Last Successful Revision
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rolling Back to the Last Successful Revision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to Use
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rolling-back-to-a-specific-revision" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rolling Back to a Specific Revision
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rolling Back to a Specific Revision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listing-available-revisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listing Available Revisions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performing-the-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performing the Rollback
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Considerations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-for-rollback-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices for Rollback Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pausing-and-resuming-rollouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pausing and Resuming Rollouts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pausing and Resuming Rollouts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pausing-a-rollout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pausing a Rollout
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pausing a Rollout">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-cases-for-pausing-a-rollout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Cases for Pausing a Rollout
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resuming-a-rollout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resuming a Rollout
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resuming a Rollout">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-resuming-a-rollout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits of Resuming a Rollout
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-rollout-history-and-revisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing Rollout History and Revisions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Viewing Rollout History and Revisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewing-rollout-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing Rollout History
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Viewing Rollout History">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-viewing-rollout-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits of Viewing Rollout History
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailed-view-of-a-specific-revision" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed View of a Specific Revision
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed View of a Specific Revision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-detailed-revision-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to Use Detailed Revision Information
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="deployment-rollouts">Deployment Rollouts</h1>
+<p>Kubernetes Deployments provide a declarative way to manage your application's lifecycle, such as scaling, updating, and rollback with zero downtime. Understanding how to effectively manage Deployment rollouts is crucial for ensuring your application remains available and up-to-date. This guide covers the essentials and some advanced topics on Kubernetes Deployment rollouts.</p>
+<h2 id="understanding-rollouts-and-revisions">Understanding Rollouts and Revisions</h2>
+<p>When you create or update a Deployment, Kubernetes gradually rolls out the changes to your application by updating one or more Pods with the new version, while keeping your application available. Each time a new Deployment rollout is triggered, a new <code>Revision</code> is created, allowing you to rollback to a previous state of your Deployment if needed.</p>
+<h3 id="triggering-a-rollout">Triggering a Rollout</h3>
+<p>A rollout is triggered by any change to the Pod template in the Deployment's <code>spec.template</code> field. Common changes include:</p>
+<ul>
+<li>Updating the container image version</li>
+<li>Changing environment variables</li>
+<li>Modifying container ports</li>
+</ul>
+<h4 id="example-updating-a-deployments-container-image">Example: Updating a Deployment's Container Image</h4>
+<pre><code class="language-shell">kubectl set image deployment/my-deployment my-container=my-image:1.2.3
+</code></pre>
+<p>This command updates the container named <code>my-container</code> in the <code>my-deployment</code> Deployment to the image <code>my-image:1.2.3</code>, triggering a rollout.</p>
+<h2 id="monitoring-rollouts">Monitoring Rollouts</h2>
+<p>Monitoring the status of a rollout is essential to ensure that your changes are being applied as expected without disrupting the service.</p>
+<h3 id="checking-rollout-status">Checking Rollout Status</h3>
+<pre><code class="language-shell">kubectl rollout status deployment/my-deployment
+</code></pre>
+<p>This command provides real-time feedback about the progress of the rollout, indicating whether it is successfully rolling out, has completed, or has encountered errors.</p>
+<h2 id="managing-rollback">Managing Rollback</h2>
+<p>In the lifecycle of application deployment and management, it's not uncommon to encounter scenarios where an update or change leads to unexpected behavior or issues. Kubernetes offers a robust mechanism to revert or rollback a Deployment to a previous state, ensuring service stability and minimal downtime. This process is essential for maintaining the reliability and availability of your applications.</p>
+<h3 id="rolling-back-to-the-last-successful-revision">Rolling Back to the Last Successful Revision</h3>
+<p>If the latest changes to your Deployment cause issues, you can quickly revert to the most recently known good state by undoing the last rollout. This action effectively rolls back the Deployment to the last successful revision before the latest changes were applied.</p>
+<p>To perform a rollback to the last successful revision, use the following command:</p>
+<pre><code class="language-shell">kubectl rollout undo deployment/my-deployment
+</code></pre>
+<p>This command targets the <code>my-deployment</code> Deployment and instructs Kubernetes to revert to the state defined by the most recent successful revision. This operation is immediate and will start the process of scaling down the Pods created by the faulty rollout while scaling up Pods based on the last known good revision.</p>
+<h4 id="when-to-use">When to Use</h4>
+<ul>
+<li><strong>Immediate Issue Resolution:</strong> Ideal for quickly addressing issues introduced by a recent deployment without having to manually fix the problems.</li>
+<li><strong>Automatic Recovery:</strong> Helps in scenarios where automatic error detection and recovery processes are in place.</li>
+</ul>
+<h3 id="rolling-back-to-a-specific-revision">Rolling Back to a Specific Revision</h3>
+<p>In some cases, you might want to rollback to a specific revision, not just the last known good state. This is particularly useful if the last deployment introduced issues that were not immediately detected.</p>
+<h4 id="listing-available-revisions">Listing Available Revisions</h4>
+<p>Before rolling back to a specific revision, you need to know the available revisions for your Deployment. This can be achieved by listing the rollout history:</p>
+<pre><code class="language-shell">kubectl rollout history deployment/my-deployment
+</code></pre>
+<p>This command displays a list of revisions for <code>my-deployment</code>, including summary details that help identify each revision.</p>
+<h4 id="performing-the-rollback">Performing the Rollback</h4>
+<p>Once you've identified the target revision for rollback, you can specify it using the <code>--to-revision</code> flag in the <code>rollout undo</code> command:</p>
+<pre><code class="language-shell">kubectl rollout undo deployment/my-deployment --to-revision=2
+</code></pre>
+<p>In this example, <code>my-deployment</code> is rolled back to revision number 2. This command triggers a rollback process, where Kubernetes scales down the Pods from the current state and scales up Pods matching the state of the specified revision.</p>
+<h4 id="considerations">Considerations</h4>
+<ul>
+<li><strong>Revision Numbers:</strong> Keep in mind that revision numbers are incremented with each rollout. Ensure you're referring to the correct revision by consulting the rollout history.</li>
+<li><strong>Impact on Traffic:</strong> Rollbacks can temporarily affect traffic as Pods are replaced. Kubernetes tries to minimize downtime by managing the scaling process, but brief disruptions can occur, especially if readiness and liveness probes are not properly configured.</li>
+</ul>
+<h3 id="best-practices-for-rollback-management">Best Practices for Rollback Management</h3>
+<ul>
+<li><strong>Regularly Review Deployment History:</strong> Familiarize yourself with the deployment history of your applications to make informed decisions when a rollback is necessary.</li>
+<li><strong>Automate Health Checks:</strong> Implement automated health checks and monitoring to quickly detect issues post-deployment, facilitating faster rollbacks when required.</li>
+<li><strong>Test Rollbacks:</strong> Regularly test rollback scenarios in a staging environment to ensure that your application can be safely reverted to a previous state.</li>
+</ul>
+<h2 id="pausing-and-resuming-rollouts">Pausing and Resuming Rollouts</h2>
+<p>Deployments in Kubernetes are dynamic and continuous processes that ideally run with minimal manual intervention. However, there are circumstances where you might need to temporarily halt a Deployment's rollout to address issues, refine the deployment strategy, or batch updates. Kubernetes provides functionality to pause and later resume rollouts, giving you control over the deployment process and minimizing potential disruptions.</p>
+<h3 id="pausing-a-rollout">Pausing a Rollout</h3>
+<p>Pausing a rollout temporarily halts the ongoing deployment process, keeping the current state of the Deployment stable while preventing any new updates from being rolled out. This is particularly useful for applying cumulative updates or troubleshooting without impacting the overall deployment process.</p>
+<p>To pause an ongoing rollout of a Deployment, use the following command:</p>
+<pre><code class="language-shell">kubectl rollout pause deployment/my-deployment
+</code></pre>
+<p>This command targets <code>my-deployment</code>, effectively freezing its current state. While paused, any updates to the Deployment's pod template (<code>spec.template</code>) do not trigger a new rollout. This allows you to accumulate changes and apply them all at once, rather than incrementally.</p>
+<h4 id="use-cases-for-pausing-a-rollout">Use Cases for Pausing a Rollout</h4>
+<ul>
+<li><strong>Incremental Updates:</strong> When you want to apply several updates or configurations changes but prefer to review and apply them as a batch to minimize disruptions.</li>
+<li><strong>Troubleshooting:</strong> If you detect issues during a rollout, pausing allows you to investigate and fix these issues without the pressure of an ongoing deployment.</li>
+</ul>
+<h3 id="resuming-a-rollout">Resuming a Rollout</h3>
+<p>Once the necessary adjustments or fixes have been made to a paused Deployment, you can resume the rollout to apply these changes. Resuming triggers a new rollout based on the current state of the Deployment's pod template, incorporating all changes made during the pause.</p>
+<p>To resume a paused rollout, issue the following command:</p>
+<pre><code class="language-shell">kubectl rollout resume deployment/my-deployment
+</code></pre>
+<p>This command signals Kubernetes to continue with the rollout process for <code>my-deployment</code>, applying any accumulated updates. The resume action initiates the update process, deploying changes in a controlled and gradual manner according to the Deployment's defined strategy (e.g., RollingUpdate).</p>
+<h4 id="benefits-of-resuming-a-rollout">Benefits of Resuming a Rollout</h4>
+<ul>
+<li><strong>Controlled Deployment:</strong> Resuming a paused rollout allows for a more controlled and deliberate deployment process, ensuring that changes are rolled out in a manageable fashion.</li>
+<li><strong>Reduced Risk:</strong> By batching updates and applying them after a pause, you reduce the risk of introducing multiple changes simultaneously, which can be harder to troubleshoot if issues arise.</li>
+</ul>
+<h3 id="best-practices">Best Practices</h3>
+<ul>
+<li><strong>Monitor Rollout Status:</strong> Regularly check the status of your rollouts, especially after resuming a paused deployment, to ensure that the rollout completes successfully.</li>
+<li><strong>Use Readiness and Liveness Probes:</strong> Ensure your Pods have appropriate readiness and liveness probes configured. These probes help manage the rollout process smoothly by only directing traffic to Pods that are ready and healthy.</li>
+<li><strong>Review Changes Before Resuming:</strong> Before resuming a paused rollout, thoroughly review all changes to avoid unintended consequences. This review process is crucial for maintaining the stability and reliability of your application.</li>
+</ul>
+<h2 id="viewing-rollout-history-and-revisions">Viewing Rollout History and Revisions</h2>
+<p>A critical aspect of managing deployments in Kubernetes is understanding the history of rollouts and the revisions that have been made over time. This knowledge not only aids in tracking changes but also facilitates rollback decisions and ensures the continuity and stability of your application. Kubernetes provides built-in mechanisms to view the rollout history and detailed information about each revision.</p>
+<h3 id="viewing-rollout-history">Viewing Rollout History</h3>
+<p>To gain insights into the evolution of a Deployment and to track changes made through each update, you can view the rollout history. This history includes all the revisions made to the Deployment, offering a timeline of changes.</p>
+<p>To list the revisions of your Deployment, use the following command:</p>
+<pre><code class="language-shell">kubectl rollout history deployment/my-deployment
+</code></pre>
+<p>Executing this command displays a list of revisions for <code>my-deployment</code>. Each revision is associated with a revision number, and the list provides a high-level summary of what changes were made in each revision (e.g., updates to the pod template).</p>
+<h4 id="benefits-of-viewing-rollout-history">Benefits of Viewing Rollout History</h4>
+<ul>
+<li><strong>Change Tracking:</strong> Allows you to see how many times and when the Deployment was updated.</li>
+<li><strong>Troubleshooting:</strong> Helps in identifying potentially problematic revisions that may have introduced issues into the environment.</li>
+<li><strong>Rollback Planning:</strong> Essential for planning a rollback to a specific, stable revision if needed.</li>
+</ul>
+<h3 id="detailed-view-of-a-specific-revision">Detailed View of a Specific Revision</h3>
+<p>While the summary provided by the rollout history is useful, sometimes you may need more detailed information about what exactly changed in a specific revision. This detailed view can provide insights into the modifications made to the pod template or other Deployment configurations.</p>
+<p>To view detailed information about a specific revision, use the <code>--revision</code> flag:</p>
+<pre><code class="language-shell">kubectl rollout history deployment/my-deployment --revision=2
+</code></pre>
+<p>This command targets <code>my-deployment</code> and fetches detailed information about revision number 2. The output includes specifics about the changes made in that revision, such as the container image updates, environment variable changes, or any other modifications to the pod template.</p>
+<h4 id="when-to-use-detailed-revision-information">When to Use Detailed Revision Information</h4>
+<ul>
+<li><strong>Analyzing Changes:</strong> To understand the specific changes introduced in a particular revision, especially when diagnosing issues or assessing the impact of a rollback.</li>
+<li><strong>Auditing and Compliance:</strong> Detailed revision information can be crucial for audit trails and compliance, where you need to document exactly what changes were made and when.</li>
+<li><strong>Learning from Past Deployments:</strong> Reviewing detailed changes from past revisions can offer valuable lessons and best practices for future deployments.</li>
+</ul>
+<h3 id="best-practices_1">Best Practices</h3>
+<ul>
+<li><strong>Regular Reviews:</strong> Make it a habit to regularly review the rollout history and detailed revisions of your Deployments. This practice can help preemptively identify potential issues and understand the deployment lifecycle better.</li>
+<li><strong>Documentation:</strong> Document significant changes and their impacts based on the rollout history. This documentation can be invaluable for new team members, auditing purposes, and historical analysis.</li>
+<li><strong>Automated Monitoring:</strong> Consider integrating tools or scripts that can automatically monitor and alert on certain changes in Deployment revisions. This proactive approach can enhance your deployment strategy and incident response.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Effective management of Kubernetes Deployment rollouts includes understanding how to trigger, monitor, pause, and resume rollouts, as well as how to rollback to previous revisions and clean up old ReplicaSets. Mastery of these concepts ensures your deployments are both robust and flexible, capable of delivering seamless updates to your applications.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

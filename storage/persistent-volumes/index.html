@@ -1,0 +1,1317 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../workloads-and-scheduling/daemonsets/">
+      
+      
+        <link rel="next" href="../emptydir/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11">
+    
+    
+      
+        <title>Persistent Volumes - CKA Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#persistent-volumes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CKA Docs" class="md-header__button md-logo" aria-label="CKA Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CKA Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Persistent Volumes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CKA Docs" class="md-nav__button md-logo" aria-label="CKA Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    CKA Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cluster Architecture, Installation & Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cluster Architecture, Installation & Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster-architecture-installation-and-configuration/backing-up-an-etcd-cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backing up an etcd cluster
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster-architecture-installation-and-configuration/certificate-signing-requests-normal-user/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Certificate Signing Requests (Normal User)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Workloads & Scheduling
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Workloads & Scheduling
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workloads-and-scheduling/deployments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workloads-and-scheduling/daemonsets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DaemonSets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Storage
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Storage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Persistent Volumes
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Persistent Volumes
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#persistent-volumes-pv-and-persistent-volume-claims-pvc-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistent Volumes (PV) and Persistent Volume Claims (PVC) Comparison
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persistent Volumes (PV) and Persistent Volume Claims (PVC) Comparison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#persistentvolume-pv" class="md-nav__link">
+    <span class="md-ellipsis">
+      PersistentVolume (PV)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistentvolumeclaim-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      PersistentVolumeClaim (PVC)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direct-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Direct Comparison
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistent-volumes-pv-and-persistent-volume-claims-pvc-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistent Volumes (PV) and Persistent Volume Claims (PVC) Description
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persistent Volumes (PV) and Persistent Volume Claims (PVC) Description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#persistent-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistent Volume
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persistent Volume">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Modes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volume Modes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storage Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reclaim-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reclaim Policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mount-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mount Options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-persistent-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a Persistent Volume
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistent-volume-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistent Volume Claim
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persistent Volume Claim">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-modes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Modes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-modes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volume Modes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selector" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selector
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-persistent-volume-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Persistent Volume Claim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-pvc-in-a-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use PVC in a Pod
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reclaiming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reclaiming
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic Provisioning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emptydir/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    emptyDir
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference-to-doc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Quizs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Quizs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quiz/quiz2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quiz 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#persistent-volumes-pv-and-persistent-volume-claims-pvc-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistent Volumes (PV) and Persistent Volume Claims (PVC) Comparison
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persistent Volumes (PV) and Persistent Volume Claims (PVC) Comparison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#persistentvolume-pv" class="md-nav__link">
+    <span class="md-ellipsis">
+      PersistentVolume (PV)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistentvolumeclaim-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      PersistentVolumeClaim (PVC)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direct-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Direct Comparison
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistent-volumes-pv-and-persistent-volume-claims-pvc-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistent Volumes (PV) and Persistent Volume Claims (PVC) Description
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persistent Volumes (PV) and Persistent Volume Claims (PVC) Description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#persistent-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistent Volume
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persistent Volume">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Modes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volume Modes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storage Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reclaim-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reclaim Policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mount-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mount Options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-persistent-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a Persistent Volume
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistent-volume-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistent Volume Claim
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persistent Volume Claim">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-modes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Modes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-modes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volume Modes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selector" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selector
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-persistent-volume-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Persistent Volume Claim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-pvc-in-a-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use PVC in a Pod
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reclaiming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reclaiming
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic Provisioning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="persistent-volumes">Persistent Volumes</h1>
+<p>Kubernetes supports managing storage through Persistent Volumes (PV) and Persistent Volume Claims (PVC), offering a high level of abstraction to handle storage resources.</p>
+<h2 id="persistent-volumes-pv-and-persistent-volume-claims-pvc-comparison">Persistent Volumes (PV) and Persistent Volume Claims (PVC) Comparison</h2>
+<p>In Kubernetes, the concepts of PersistentVolume (PV) and PersistentVolumeClaim (PVC) work together to provide persistent storage, but they serve different purposes and operate from distinct perspectives. Below are the key differences between the two:</p>
+<h3 id="persistentvolume-pv">PersistentVolume (PV)</h3>
+<ul>
+<li><strong>Storage Resources:</strong> A PV is a piece of storage in the cluster that has been provisioned by an administrator or dynamically through StorageClasses. It represents a physical resource in the underlying infrastructure, such as a disk in the cloud, NFS storage, among others.</li>
+<li><strong>Independent Lifecycle:</strong> The lifecycle of a PV is independent of any individual pod that consumes it. This means the storage resource can survive after the pods are destroyed.</li>
+<li><strong>Managed by Administrators:</strong> PVs are generally provisioned and managed by cluster administrators. This includes the creation, configuration, and management of the storage lifecycle policy.</li>
+<li><strong>Reclaim Policies:</strong> PVs include policies that define what happens to the volume once the PVC is released. These policies can be Retain, Recycle, or Delete.</li>
+</ul>
+<h3 id="persistentvolumeclaim-pvc">PersistentVolumeClaim (PVC)</h3>
+<ul>
+<li><strong>Storage Request:</strong> A PVC is essentially a storage request by the user. Application developers use PVCs to request specific sizes and access modes for the storage they need for their applications.</li>
+<li><strong>User Abstraction:</strong> PVCs provide an abstraction layer over the specific details of the physical storage. Users do not need to know where or how the PV is stored; they just need to request the size and access they require.</li>
+<li><strong>Lifecycle Tied to User:</strong> The lifecycle of a PVC is more closely tied to the lifecycle of the pods that use it. A PVC will exist as long as it is needed for the pods and will be deleted by the user if it is no longer necessary.</li>
+<li><strong>Dynamic Binding:</strong> A PVC can be satisfied by any PV that meets the requirements of the PVC (size, access modes, StorageClass), and this "binding" process is managed by Kubernetes dynamically.</li>
+</ul>
+<h3 id="direct-comparison">Direct Comparison</h3>
+<ul>
+<li><strong>Purpose:</strong> PV = offer of storage; PVC = request for storage.</li>
+<li><strong>Management:</strong> PVs are managed by administrators; PVCs are requested by end-users.</li>
+<li><strong>Lifecycle:</strong> PVs have a lifecycle independent of the pods; PVCs are designed to be used and possibly discarded by the pods.</li>
+<li><strong>Policies:</strong> PVs can define reclaim policies; PVCs define the required size and access.</li>
+<li><strong>Allocation:</strong> A PV is a resource in the cluster; a PVC is a ticket to utilize those resources.</li>
+</ul>
+<p>In summary, PVs and PVCs are two sides of the same coin, designed to work in conjunction within Kubernetes to provide persistent storage in a manner that is secure, efficient, and easy to use for developers and system administrators.</p>
+<h2 id="persistent-volumes-pv-and-persistent-volume-claims-pvc-description">Persistent Volumes (PV) and Persistent Volume Claims (PVC) Description</h2>
+<h3 id="persistent-volume">Persistent Volume</h3>
+<p>A Persistent Volume (PV) in Kubernetes is a piece of storage that has been provisioned by an administrator or dynamically provisioned using Storage Classes. It is a cluster resource that can be used by applications running in pods.</p>
+<h4 id="capacity">Capacity</h4>
+<p>Defines the size of the volume. It is specified when the PV is created and is important for matching PVs with Persistent Volume Claims (PVCs).</p>
+<h4 id="access-modes">Access Modes</h4>
+<p>Determines how the volume can be accessed by the containers. The access modes include:</p>
+<ul>
+<li><code>ReadWriteOnce (RWO)</code> - The volume can be mounted as read-write by a single node.</li>
+<li><code>ReadOnlyMany (ROX)</code>- The volume can be mounted as read-only by many nodes.</li>
+<li><code>ReadWriteMany (RWX)</code> - The volume can be mounted as read-write by many nodes.</li>
+</ul>
+<h4 id="volume-modes">Volume Modes</h4>
+<p>Specifies whether the volume is presented as a block device or a filesystem. The two modes are:</p>
+<ul>
+<li><code>Block</code></li>
+<li><code>Filesystem</code></li>
+</ul>
+<p>A volume with <code>volumeMode: Filesystem</code> is mounted into Pods into a directory. If the volume is backed by a block device and the device is empty, Kubernetes creates a filesystem on the device before mounting it for the first time.
+By default, Kubernetes uses the <code>Filesystem</code> mode for volumes. When a PersistentVolume (PV) or a PersistentVolumeClaim (PVC) is created without specifying the <code>volumeMode</code></p>
+<h4 id="storage-class">Storage Class</h4>
+<p>The StorageClass used for dynamic provisioning. It specifies the type of storage to be used and configurations like replication factor, disk type, etc.</p>
+<h4 id="reclaim-policy">Reclaim Policy</h4>
+<p>Determines what happens to the volume after it is released from its claim. Options include:</p>
+<ul>
+<li><code>Retain</code> - The volume is kept after it is released.</li>
+<li><code>Delete</code> - The volume and its data are deleted after it is released.</li>
+<li><code>Recycle</code> - Deprecated.</li>
+</ul>
+<h4 id="mount-options">Mount Options</h4>
+<p>Custom mount options that the volume should be mounted with.</p>
+<h4 id="phase">Phase</h4>
+<p>Indicates the current phase of the Persistent Volume (e.g., Available, Bound, Released, Failed).</p>
+<h4 id="create-a-persistent-volume">Create a Persistent Volume</h4>
+<pre><code class="language-yaml">apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-example
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  hostPath:
+    path: &quot;/mnt/data&quot;
+</code></pre>
+<h3 id="persistent-volume-claim">Persistent Volume Claim</h3>
+<p>A PVC is a request for storage by a user. It specifies the size, access modes, and other requirements for storage.</p>
+<h4 id="access-modes_1">Access Modes</h4>
+<p>Same as for PVs, determines how the volume can be accessed by the containers.</p>
+<h4 id="volume-modes_1">Volume Modes</h4>
+<p>Specifies whether the requested volume is a block device or a filesystem.</p>
+<h4 id="resources">Resources</h4>
+<p>Specifies the minimum size of the volume that the claim should match.</p>
+<h4 id="selector">Selector</h4>
+<p>Allows the claim to specify the PV to bind to using labels.</p>
+<h4 id="class">Class</h4>
+<p>The name of the StorageClass used for dynamic provisioning.</p>
+<h4 id="create-persistent-volume-claim">Create Persistent Volume Claim</h4>
+<pre><code class="language-yaml">apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-example
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: standard
+</code></pre>
+<h4 id="use-pvc-in-a-pod">Use PVC in a Pod</h4>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-using-pvc
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+    volumeMounts:
+    - mountPath: &quot;/var/www/html&quot;
+      name: my-volume
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: pvc-example
+</code></pre>
+<h2 id="reclaiming">Reclaiming</h2>
+<p>The <code>persistentVolumeReclaimPolicy</code> field controls the PV's fate once its PVC is deleted:</p>
+<ul>
+<li><code>Retain</code>: The volume remains until manually deleted.</li>
+<li><code>Delete</code>: The volume is deleted automatically with the PVC.</li>
+<li><code>Recycle</code>: Deprecated in favor of dynamic provisioning.</li>
+</ul>
+<h2 id="dynamic-provisioning">Dynamic Provisioning</h2>
+<p>Allows automatic creation of storage resources when a PVC is created, based on the StorageClass specifications.</p>
+<h2 id="summary">Summary</h2>
+<p>Persistent Volumes (PVs) and Persistent Volume Claims (PVCs) provide a way for users and administrators to abstract details of how storage is provided from how it is consumed. Through the use of PVs and PVCs, Kubernetes allows for storage provisioning that can be managed independently of the application using the storage.</p>
+<p>For more detailed information, visit the official Kubernetes documentation on Persistent Volumes: https://kubernetes.io/docs/concepts/storage/persistent-volumes/</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

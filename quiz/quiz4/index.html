@@ -1,0 +1,696 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11">
+    
+    
+      
+        <title>Quiz4 - CKA Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CKA Docs" class="md-header__button md-logo" aria-label="CKA Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CKA Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Quiz4
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CKA Docs" class="md-nav__button md-logo" aria-label="CKA Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    CKA Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cluster Architecture, Installation & Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cluster Architecture, Installation & Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster-architecture-installation-and-configuration/backing-up-an-etcd-cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backing up an etcd cluster
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster-architecture-installation-and-configuration/certificate-signing-requests-normal-user/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Certificate Signing Requests (Normal User)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Workloads & Scheduling
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Workloads & Scheduling
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workloads-and-scheduling/deployments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workloads-and-scheduling/daemonsets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DaemonSets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Storage
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Storage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storage/persistent-volumes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Persistent Volumes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storage/emptydir/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    emptyDir
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference-to-doc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Quizs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Quizs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quiz2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quiz 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Quiz4</h1>
+
+<ol>
+<li>Create a deployment named Nagari that runs the busybox image and expose port 8080, has 5 replicas and executes the command echo “Hello World”. Use imperative commands.</li>
+<li>Create a nginx pod with label env=test in engineering namespace.</li>
+<li>Create a pod that echo “hello world” and then exists. Have the pod deleted automatically when it‘s completed.</li>
+<li>List nginx-dev and nginx-prod pods and delete those pods.</li>
+<li>Create a pod with image nginx called nginx and allow traffic on port 80.</li>
+<li>Create a namespace called ‘development‘ and a pod with image nginx called nginx on this namespace.</li>
+<li>Get list of all the pods showing name and namespace with a jsonpath expression.</li>
+<li>Check the image version in pod without the describe command.</li>
+<li>From the pod label name=cpu-utilizer, find the pod consuming most CPU.</li>
+<li>Create and configure the service front-end-service so it‘s accessible through NodePort and routes to the existing pod named front-end. Assume front-end pod is exposing port 80.</li>
+<li>List pod logs named frontend and search for the pattern "started" and write it to a file /opt/error-logs.</li>
+<li>List the nginx pod with custom columns POD_NAME and POD_STATUS.</li>
+<li>List all persistent volumes sorted by capacity, saving the full kubectl output to /opt/exam/volume_list.</li>
+<li>Create a job that calculates pi to 2000 decimal points using the container with the image named perl and the following commands issued to the container: ["perl", "-Mbignum=bpi", "-wle", "print bpi(2000)"]. Once the job has completed, check the logs and export the result to pi-result.txt.</li>
+<li>Create a new service account with the name podviewer.</li>
+<li>Create a ClusterRole named podviewer-role that can list persistent volumes.</li>
+<li>Create a role binding named podviewer-role-binding that grants the cluster role you created in the previous question with the service account podviewer.</li>
+<li>Create a role named pod-reader which grants read access to pods in the colmenajero namespace.</li>
+<li>Use imperative commands to create a role named pod-reader which grants read access to pods in the colmenajero namespace.</li>
+<li>Bind the previously created pod-viewer role to a user named John in the colmenarejo namespace.</li>
+<li>Deploy a pod named nginx-pod using the nginx:alpine image.</li>
+<li>Deploy a pod named spectrum using the nginx:alpine image with the labels set to gametype=arcade. Use imperative commands.</li>
+<li>Get the list of pods with label gametype=arcade in the default namespace.</li>
+<li>Create a namespace named videogames. Use the shortcut available for namespaces to create the namespace.</li>
+<li>Get a list of all nodes in the cluster in JSON format and store it in /opt/CKA/nodes.json.</li>
+<li>Use selectors to get all pods with a videogames value in the metadata.namespace attribute. Consider that the pods could be deployed in non-default namespaces.</li>
+<li>Expose the spectrum pod you created in previous questions by creating a service named spectrum-service to expose the spectrum application within the cluster on port 6379. Select the two valid answers.</li>
+<li>Create a deployment named tetris-web-app using the image ckaexa/tetris-webapp with 4 replicas.</li>
+<li>Create a yaml file called runtime-secret.yaml for a secret called runtime-user-pass. The secret has two fields: username and password. The username should be admin and the password should be supersecret. You must provide the values of the secret directly in the imperative command and generate runtime-secret.yaml from there.</li>
+<li>Create a secret that will store container environment variables and will be later used for creating a pod with that secret. The values in the secret must be admin for the username key and supersecret for the password key. Use a file and kubectl apply instead of using imperative commands.</li>
+<li>Create a pod named secret-pod with a container named busybox using busybox image, and use the previously created secret (named mysecret) to add it to the container env variables. The container must execute a command to print the environmental variables so you can check the secret has been correctly configured.</li>
+<li>Create a static pod named static-nginx on the controlplane node that uses nginx image and the command echo “hello control plane”.</li>
+<li>There is a new application named orange that has been recently deployed. There is an issue with the application and the pod status is Init:CrashLoopBackOff. A CKA admin has provided you the following information coming from a kubectl describe po orange command. Identify and fix the issue.</li>
+<li>List all the pods sorted by created timestamp.</li>
+<li>You have been requested to upgrade the control plane node named k8s-control. Which commands you should use to drain the control plane so you can perform the upgrade?</li>
+<li>Which command should you use to generate the command required to join a node to a cluster by using a token previously generated with kubeadm token generate?</li>
+<li>Create a multicontainer pod named multi-pod. The first container is named redis and uses the redis image. Also, it will listen on port 6369. The second container is named frontend and uses a django image listening on pod 8000. Which spec template is the right one for that container?</li>
+<li>Create a pod named security-context-demo-4 using gcr.io/google-samples/node-hello:1.0 that is allowed to modify system time.</li>
+<li>Label a node named k8s-worker2 with the value core-services=false.</li>
+<li>Create a pod named runAsPod that has a container named busybox1000 and runs all processes as user 1000 and as group 3000. The pod will execute the following command: sleep 4800.</li>
+<li>You have created a mongo-db deployment and a mongo-db service that is exposing the database on port 27017 using a ClusterIP type.</li>
+<li>You want to forward the local port 28015 to the service port. Which command could you execute? (select two)</li>
+<li>Create a pod named dummy-pod that outputs some data to the host using a volume. The pod must use image busybox and should mount the volume in /output/.</li>
+<li>You have created a multicontainer pod with two containers named multi-pod. One of the containers is named test and the other one prod. You want to list the files in the root folder of the test container, which command should you use?</li>
+<li>You have created a pod named milena with the wrong image name. You‘ve realized about your mistake and want to remove the pod as soon as possible. Which command you should use?</li>
+<li>You have created a deployment named condor. The deployment currently has 3 replicas but you have identified the need to scale it out to 5. Which imperative command could you use?</li>
+<li>Create a pod named frontend with a container named app that requests 64 megabytes of memory but can only use up to 128 megabytes.</li>
+<li>Create a pod that creates a file in /tmp, then will wait 20 seconds, remove the file, and wait another 300 seconds. You need to configure a livenessProbe that will monitor the file in /tmp/alive and throw a warning if it‘s removed. The probe will be executed every 7 seconds.</li>
+<li>You have created a deployment named nginx using nginx:1.8 as the image. You have been asked to do an update to nginx:1.9.1. Which command should you execute?</li>
+<li>List the InternalIP of all nodes of the cluster. Save the result to a file /root/exam/node_ips.</li>
+<li>We have deployed a new pod called np-test-1 and a service called np-test-service. Incoming connections to this service are not working. Troubleshoot and fix it. Create NetworkPolicy, by the name ingress-to-nptest that allows incoming connections to the service over port 80.</li>
+<li>List the DNS IP address(s) used by all pods in ALL namespaces. Save the output to /tmp/nameservers.txt.</li>
+<li>You need to create a multi-container with two containers: Container 1, name: ying, image: redis. Container 2, name: yang, image: busybox. You also need to configure the following environment variables: Container 1: name: future. Container 2: name: past. Container 2 should execute sleep 3000 command. Select the right solution manifest to create such multi-container pod.</li>
+<li>A new pod called goku-pod has been deployed in the default namespace and exposed through a service called freezer-svc. For some reason incoming connections to this service are not working. In order to fix it you need to create NetworkPolicy, by the name ingress-to-freezersvc that allows incoming connections to the service over port 80. Select the right manifest to achieve that.</li>
+<li>List out all the iptables rules defined for ALL services running in the cluster. Save the output to /tmp/fw-rules.txt.</li>
+<li>Which command would you use to show all the DaemonSets in the cluster?</li>
+<li>Which command would you use to list ALL nodes in the cluster?</li>
+<li>Which command would you use to show the pod names and labels?</li>
+<li>Deploy an Ingress resource called video-svc-ingress with the following configuration: backend path: /streaming, backend service: streaming-service, backend port: 8080, hostname: streaming.example.com, backend path: /live, backend service: livevideo-service, backend port: 9000, hostname: livevideo.example.com.</li>
+<li>Create a NetworkPolicy called allow-port which allows access ONLY to port 8080. The pods must meet the following criteria: 1. They CANNOT communicate on any port other than 8080. 2. Pods running in ALL other namespaces can also access port 8080.</li>
+<li>Create a pod called facebook using nginx image. It should be accessible on local port 80 as well as on node‘s port. Make sure the port should be same for all nodes in the cluster.</li>
+<li>You have been asked to create a pod named db-storage using the redis:alpine image. Create the pod manifest using imperative commands and redirect the output to a db-storage.yaml file. After that, mount a volume named tmp-volume with type emptyDir in /data/db.</li>
+<li>A pod definition file has been created in /tmp/pod-use-pv.yaml. Also, there is a persistent volume already created in the cluster named pv-1. You have been asked to create a persistentVolume claim named my-pvc so it can be later used to binding the pv-1 to the pod.</li>
+<li>Taking into account the previous question data, modify the pod manifest to mount pv-1 using the mountPath: /data and the persistentVolumeClaim we created in the previous question (my-pvc).</li>
+<li>Create a new deployment called nginx-dp, with image nginx:1.19 and 2 replicas. Record the version. Next, upgrade the deployment to version 1.21 using rolling update. Make sure that the version upgrade is recorded in the resource annotation.</li>
+<li>Taking into account the previous question scenario, perform a rollback of the update you made.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
